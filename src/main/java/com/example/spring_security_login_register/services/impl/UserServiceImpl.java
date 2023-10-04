@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User saveUser(User user) {
-		String password=passwordEncoder.encode(user.getPassword());
+		String password = passwordEncoder.encode(user.getPassword());
 		user.setPassword(password);
 		user.setRole("ROLE_USER");
 		return userRepository.save(user);
@@ -29,8 +29,15 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void removeSessionMsg() {
-		HttpSession session = ((ServletRequestAttributes)(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
-		session.removeAttribute("msg");
+		try {
+			HttpSession session = ((ServletRequestAttributes) (RequestContextHolder.getRequestAttributes()))
+					.getRequest().getSession();
+			session.removeAttribute("msg");
+
+		} catch (Exception e) {
+
+			throw new NullPointerException();
+		}
 
 	}
 
