@@ -31,7 +31,7 @@ public class HomeContoller {
 
 	@GetMapping("/signin")
 	public String login() {
-		return "login";
+		return "signin";
 	}
 
 	@ModelAttribute

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.example.spring_security_login_register.SpringSecurityLoginRegisterApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.509 s - in com.example.spring_security_login_register.SpringSecurityLoginRegisterApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 16.245 s - in com.example.spring_security_login_register.SpringSecurityLoginRegisterApplicationTests

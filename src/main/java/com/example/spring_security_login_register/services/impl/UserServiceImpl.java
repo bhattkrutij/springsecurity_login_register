@@ -1,5 +1,7 @@
 package com.example.spring_security_login_register.services.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,24 +23,47 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User saveUser(User user) {
+		System.err.println("================="+user.getEmail()+user.getName()+user.getPassword()+user.getRole());
 		String password = passwordEncoder.encode(user.getPassword());
 		user.setPassword(password);
 		user.setRole("ROLE_USER");
 		return userRepository.save(user);
 	}
 
+
 	@Override
 	public void removeSessionMsg() {
-		try {
+		
 			HttpSession session = ((ServletRequestAttributes) (RequestContextHolder.getRequestAttributes()))
 					.getRequest().getSession();
 			session.removeAttribute("msg");
 
-		} catch (Exception e) {
+		
+	}
 
-			throw new NullPointerException();
+
+	@Override
+	public User findUserById(Long id) {
+	Optional<User> user = userRepository.findById(id);
+	if(user.isPresent()) {
+		return user.get();
+	}else {
+		throw new NullPointerException("user not found");
+	}
+		
+	}
+
+
+	@Override
+	public boolean deleteUserById(Long id) {
+		Optional<User> user = userRepository.findById(id);
+		if(user.isPresent()) {
+			userRepository.delete(user.get());
+			return true;
+		}else {
+			return false;
 		}
-
+		
 	}
 
 }

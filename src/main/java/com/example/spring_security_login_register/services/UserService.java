@@ -7,4 +7,8 @@ public interface UserService {
 
 	public void removeSessionMsg();
 
+	public User findUserById(Long id);
+
+	public boolean deleteUserById(Long id);
+
 }
